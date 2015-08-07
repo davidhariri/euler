@@ -1,17 +1,18 @@
 import time
 # globals
 st = time.time()
+s = 0
 
 # locals
-s = 0
 i = 0
 
+# solution
 while i < 1000:
     if i % 3 == 0 or i % 5 == 0:
         s = s+i
 
     i = i+1
 
-# final prints
+# prints
 print("Solution is: %i" % s)
 print("Took %s seconds" % (time.time() - st))
