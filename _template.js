@@ -1,12 +1,12 @@
 'use strict';
+console.time("s");
 
 /*
 NOTE:
 
 */
 
-console.time("s");
+let s = 0;
 
-// console.log(s);
-
+console.log(s);
 console.timeEnd("s");
