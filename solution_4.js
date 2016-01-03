@@ -29,8 +29,7 @@ const palindromaticNumbers = [];
 
 for (var i = 100; i <= 999; i++) {
   for (var j = 100; j <= 999; j++) {
-    const potentialPalindrome = i * j;
-    const pStr = `${potentialPalindrome}`;
+    const pStr = `${i * j}`;
     const pLen = pStr.length;
 
     if(pLen % 2 === 0) { // A palindromatic word must have an even length
@@ -42,11 +41,11 @@ for (var i = 100; i <= 999; i++) {
       const flippedRs = pStrRs.reverse();
 
       if(pStrLs === flippedRs) {
-        palindromaticNumbers.push(potentialPalindrome);
+        palindromaticNumbers.push(pStr);
       }
     }
   }
 }
 
-console.log(Math.max.apply(Math, palindromaticNumbers));
+console.log(Math.max(...palindromaticNumbers));
 console.timeEnd("s");
