@@ -12,7 +12,7 @@ What is the smallest positive number that is evenly divisible by all of the numb
 
 let s = 0;
 let found = false;
-
+// NOTE: This can be optimized by widdling away common multiples like 10(2, 5) etc... see the sieve of eratosthenes
 while(!found) {
   s++;
   const x = [];
@@ -27,5 +27,5 @@ while(!found) {
   }
 }
 
-console.log(s); // FIXME: This took 36s... there has to be an optimization that can be made
+console.log(s);
 console.timeEnd("s");
