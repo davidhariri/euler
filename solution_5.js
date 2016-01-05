@@ -27,5 +27,5 @@ while(!found) {
   }
 }
 
-console.log(s);
+console.log(s); // FIXME: This took 36s... there has to be an optimization that can be made
 console.timeEnd("s");
