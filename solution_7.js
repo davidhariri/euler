@@ -36,6 +36,7 @@ function findPrimeNumbersUpTo(max) {
     let isPrime = true;
 
     for (let i = 0; i < primeList.length; i++) {
+      // TODO: I think theres a Math.sqrt(primeList.length) I can implement to make this more efficient
       const p = primeList[i];
 
       if(p !== 1 && potentialPrime !== p && potentialPrime % p === 0) {
