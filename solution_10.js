@@ -31,7 +31,7 @@ function findPrimeNumbersUpTo(max) {
   return primeList;
 }
 
-const primesBelowTwoMillion = findPrimeNumbersUpTo(10);
+const primesBelowTwoMillion = findPrimeNumbersUpTo(2000000);
 
 [...primesBelowTwoMillion].map((prime) => {
   s+=prime;
