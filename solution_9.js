@@ -16,7 +16,7 @@ Find the product abc.
 
 let s = 0;
 
-for (let c = 1; c < 1000; c++) {
+for (let c = 1; c <= 998; c++) { // 998 because the minimum solution is 1 + 1 + 998
   for (let b = 1; b < c; b++) {
     for (let a = 1; a < b; a++) {
       if(a + b + c === 1000 && a < b < c) {
