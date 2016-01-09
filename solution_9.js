@@ -17,8 +17,8 @@ Find the product abc.
 let s = 0;
 
 for (let c = 1; c < 1000; c++) {
-  for (let b = 1; b < 1000; b++) {
-    for (let a = 1; a < 1000; a++) {
+  for (let b = 1; b < c; b++) {
+    for (let a = 1; a < b; a++) {
       if(a + b + c === 1000 && a < b < c) {
         if(Math.pow(a, 2) + Math.pow(b, 2) === Math.pow(c, 2)) {
           s = a*b*c;
