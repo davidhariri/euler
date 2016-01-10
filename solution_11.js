@@ -59,9 +59,9 @@ let s = 0;
 
 // NOTE:
 // This problem is half as complicated as I originally thought because you don't
-//  need to calculate in all directions. Only "down" and to the right because
-// all solutions will already be found by going down and to the right.
-// Any up and to the left will be redundant.
+//  need to calculate in all directions. Only "down" and to the right/left because
+// all solutions will already be found by going down and to the right/left.
+// Any up-wise solutions will be redundant.
 
 matrix.forEach((r, y) => {
   r.forEach((c, x) => {
