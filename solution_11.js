@@ -57,67 +57,32 @@ const matrix = [
 
 let s = 0;
 
-function getProductAtPlace(place, c, x, y) {
-  switch (place) {
-    case 'NN':
-      return c * matrix[y-1][x] * matrix[y-2][x] * matrix[y-3][x];
-      break;
-    case 'NE':
-      return c * matrix[y-1][x+1] * matrix[y-2][x+2] * matrix[y-3][x+3];
-      break;
-    case 'EE':
-      return c * row[x+1] * row[x+2] * row[x+3];
-      break;
-    case 'SE':
-      return c * matrix[y+1][x+1] * matrix[y+2][x+2] * matrix[y+3][x+3];
-      break;
-    case 'SS':
-      return c * matrix[y+1][x] * matrix[y+2][x] * matrix[y+3][x];
-      break;
-    case 'SW':
-      return c * matrix[y+1][x-1] * matrix[y+2][x-2] * matrix[y+3][x-3];
-      break;
-    case 'WW':
-      return c * row[x-1] * row[x-2] * row[x-3];
-      break;
-    case 'NW':
-      return c * matrix[y-1][x-1] * matrix[y-2][x-2] * matrix[y-3][x-3];
-      break;
-    default:
-      return 0;
-  }
-}
+// NOTE:
+// This problem is half as complicated as I originally thought because you don't
+//  need to calculate in all directions. Only "down" and to the right because
+// all solutions will already be found by going down and to the right.
+// Any up and to the left will be redundant.
 
-function updateSolution(potentialSolution) {
-  if(potentialSolution > s) {
-    s = potentialSolution;
-  }
-}
+matrix.forEach((r, y) => {
+  r.forEach((c, x) => {
+    // Looking right: c --> x+3
+    if(x < r.length-3) {
+      s = Math.max(s, (c * r[x+1] * r[x+2] * r[x+3]));
 
-matrix.forEach((row, y) => {
-  row.forEach((c, x) => {
-    // x is the key which corresponds to the place we are in the current row (0 --> row.length-1)
-    // y is the key which corresponds to the current row we are in the matrix (0 --> matrix.length-1)
-    if(x < 3 && y < 3) {
-      // Can't calculate anything west or north
-    } else if(x < 3 && y > matrix.length-3) {
-      // Can't calculate anything west or south
-    } else if(x > row.length-3 && y < 3) {
-      // Can't calculate anything east or north
-    } else if(x > row.length-3 && y > matrix.length-3) {
-      // Can't calculate anything east or south
-      updateSolution(getProductAtPlace('WW', c, x, y));
-      updateSolution(getProductAtPlace('NW', c, x, y));
-    } else {
-      // We're somewhere in the middle and calculate all of it
-      updateSolution(getProductAtPlace('NN', c, x, y));
-      updateSolution(getProductAtPlace('NE', c, x, y));
-      updateSolution(getProductAtPlace('EE', c, x, y));
-      updateSolution(getProductAtPlace('SE', c, x, y));
-      updateSolution(getProductAtPlace('SS', c, x, y));
-      updateSolution(getProductAtPlace('SW', c, x, y));
-      updateSolution(getProductAtPlace('WW', c, x, y));
-      updateSolution(getProductAtPlace('NW', c, x, y));
+      if(y < matrix.length-3) {
+        // Looking right and down: c --> x+3, y+3
+        s = Math.max(s, (c * matrix[y+1][x+1] * matrix[y+2][x+2]  * matrix[y+3][x+3]));
+      }
+    }
+
+    // Looking down: c --> y+3
+    if(y < matrix.length-3) {
+      s = Math.max(s, (c * matrix[y+1][x] * matrix[y+2][x]  * matrix[y+3][x]));
+
+      if(x > 3) {
+        // Looking left and down: c --> x-3, y+3
+        s = Math.max(s, (c * matrix[y+1][x-1] * matrix[y+2][x-2]  * matrix[y+3][x-3]));
+      }
     }
   });
 });
